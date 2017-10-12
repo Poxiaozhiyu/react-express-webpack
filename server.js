@@ -6,7 +6,7 @@ const favicon = require('serve-favicon');
 
 const PORT = 8888;
 
-let app = express();
+const app = express();
 
 // 设置icon
 // app.use(favicon(path.join(__dirname, 'static', 'image/favicon.png')));
@@ -27,8 +27,52 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+let users = [
+  {
+    id:1,
+    name: 'Lixiaoyu',
+    age: 32
+  },{
+    id:2,
+    name: 'Liyuanze',
+    age: 5
+  },{
+    id:3,
+    name: 'Liyuanzhi',
+    age: 1
+  }
+];
+
 app.get('/user', (req, res) => {
-  res.render('user');
+  res.json(users);
+});
+
+app.get('/user/:id', (req, res) => {
+  users.forEach(item => {
+    if (item.id == req.params.id) {
+      res.json(item);
+    }
+  });
+  res.json({});
+});
+
+// Not Found page
+app.use((req, res, next) => {
+  let err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// Error Page
+app.use((err, req, res, next) => {
+  res.locals.message = err.message;
+  res.locals.error = err;
+  if (req.app.get('env') !== 'development') {
+    delete res.locals.error.stack;
+  }
+
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 

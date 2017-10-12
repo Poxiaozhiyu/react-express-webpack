@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf static/* views/*",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run clean && webpack -p --progress --colors && node server.js",
+    "start": "npm run clean && webpack -p --progress --colors && SET NODE_ENV=production && node server.js",
     "build": "npm run clean && webpack -p --progress --colors",
     "watch": "npm run clean && webpack --config webpack.dev.config.js --progress --colors --watch"
   },

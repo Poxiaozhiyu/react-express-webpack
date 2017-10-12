@@ -31,7 +31,7 @@ const getEntryOptions = pages => {
 
 
 module.exports = {
-  entry: getEntryOptions(['index', 'user']),
+  entry: getEntryOptions(['index', 'user', 'error']),
   output: {
     path: path.join(__dirname, 'static'),
     filename: '[name]-[hash].js',
@@ -89,7 +89,7 @@ module.exports = {
         warnings: false
       }
     }),
-    ...getHtmlWebpackOptions(['index', 'user']),
+    ...getHtmlWebpackOptions(['index', 'user', 'error']),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new BuddhaPlugin()
