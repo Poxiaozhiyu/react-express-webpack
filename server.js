@@ -49,7 +49,7 @@ app.get('/user', (req, res) => {
 
 app.get('/user/:id', (req, res) => {
   users.forEach(item => {
-    if (item.id == req.params.id) {
+    if (item.id === req.params.id) {
       res.json(item);
     }
   });
@@ -74,7 +74,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}...`);

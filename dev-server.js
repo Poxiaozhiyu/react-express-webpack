@@ -1,14 +1,14 @@
 'use strict';
 
-var webpack = require('webpack'),
-    WebpackDevServer = require('webpack-dev-server'),
-    config = require('./webpack.dev.config.js');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const config = require('./webpack.dev.config.js');
 
 for (let key in config.entry) {
-  config.entry[key].unshift("webpack-dev-server/client?http://localhost:3000/")
+  config.entry[key].unshift("webpack-dev-server/client?http://localhost:3000/");
 }
 
-var server = new WebpackDevServer(webpack(config), {
+const server = new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true,

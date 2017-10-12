@@ -29,11 +29,11 @@ const getEntryOptions = pages => {
 
 
 module.exports = {
-  entry: getEntryOptions(['index', 'user']),
+  entry: getEntryOptions(['index', 'user', 'error']),
   output: {
-    path: path.join(__dirname, 'static/javascript'),
+    path: path.join(__dirname, 'static'),
     filename: '[name].js',
-    publicPath: '/javascript'
+    publicPath: ''
   },
   module: {
     loaders: [
@@ -41,28 +41,23 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
-      },
-      {
+      },{
         test: /\.css$/,
         exclude: /node_modules/,
         loader: 'style!css'
-      },
-      {
+      },{
         test: /\.less$/,
         exclude: /node_modules/,
         loader: 'style-loader!css-loader!less-loader'
-      },
-      {
+      },{
         test: /\.sass$/,
         exclude: /node_modules/,
         loader: 'style-loader!css-loader!sass-loader'
-      },
-      {
+      },{
         test: /\.scss/,
         exclude: /node_modules/,
         loader: 'style-loader!css-loader!sass-loader'
-      },
-      {
+      },{
         test: /\.ejs$/,
         exclude: /node_modules/,
         loader: 'ejs-loader',
@@ -75,7 +70,7 @@ module.exports = {
     ]
   },
   plugins: [
-    ...getHtmlWebpackOptions(['index', 'user']),
+    ...getHtmlWebpackOptions(['index', 'user', 'error']),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
